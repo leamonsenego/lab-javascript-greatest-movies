@@ -58,9 +58,9 @@ function orderByYear(movies) {
   
   sortedMovies.sort(function (a, b) {
     if (a.year !== b.year) {
-      return a.year - b.year; // Sort by year
+      return a.year - b.year; 
     } else {
-      return a.title.localeCompare(b.title); // Sort alphabetically by title
+      return a.title.localeCompare(b.title); 
     }
   });
 
