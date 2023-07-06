@@ -7,7 +7,11 @@ const getAllDirectors = (moviesArg) => {
     return movieItem.director;
   });
 
-  return directors;
+  const uniqueDirectors = directors.filter((element, index) => {
+    return directors.indexOf(element) === index;
+  });
+
+  return uniqueDirectors;
 };
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -24,19 +28,58 @@ function howManyMovies(moviesArray) {
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+const scoresAverage = (moviesArray) => {
+  const sum = moviesArray.reduce((accumulator, currentValue) => {
+    if (!currentValue.score) {
+      return accumulator;
+    } else {
+      return accumulator + currentValue.score;
+    }
+  }, 0);
+
+  let average = Math.round((sum / moviesArray.length) * 100) / 100;
+
+  if (moviesArray.length === 0) {
+    return 0;
+  }
+
+  return average;
+};
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+const dramaMoviesScore = (moviesArray) => {
+  const dramaArray = moviesArray.filter((item) => item.genre.includes("Drama"));
+  return scoresAverage(dramaArray);
+};
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(movies) {
+  // Create a shallow copy of the original array
+  const sortedMovies = movies.slice();
+
+  // Sort the array by year and title
+  sortedMovies.sort(function (a, b) {
+    if (a.year !== b.year) {
+      return a.year - b.year; // Sort by year
+    } else {
+      return a.title.localeCompare(b.title); // Sort alphabetically by title
+    }
+  });
+
+  // Return the sorted array
+  return sortedMovies;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  const orderedbyLetter = moviesArray.slice().sort();
+
+  return orderedbyLetter;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
+
