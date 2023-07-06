@@ -54,10 +54,10 @@ const dramaMoviesScore = (moviesArray) => {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
-  // Create a shallow copy of the original array
+
   const sortedMovies = movies.slice();
 
-  // Sort the array by year and title
+  
   sortedMovies.sort(function (a, b) {
     if (a.year !== b.year) {
       return a.year - b.year; // Sort by year
